@@ -15,16 +15,16 @@ You will take a baseline installation of a Linux server and prepare it to host y
 - Create Lightsail instance with instance image: Ubuntu
 
 ## Server Configuration
-1. Create a new user named grader and grant this user sudo permissions.
+### 1. Create a new user named grader and grant this user sudo permissions.
 - Log into the remote VM as root user through ssh: $ ssh root@13.58.134.222
 - Add a new user called grader: $ sudo adduser grader
 - Create new file under the sudoers directory: $ sudo nano /etc/sudoers.d/grader. Fill that file with grader ALL=(ALL:ALL) ALL, then save
 - Edit the hosts by $ sudo nano /etc/hosts, and then add 127.0.1.1 ip-10-20-37-65 under 127.0.1.1:localhost
-2. Update Packages
+### 2. Update Packages
 - $ sudo apt-get update
 - $ sudo apt-get upgrade
 - We will also need to install FINGER, to check users status: $ apt-get install finger
-3. Configure key-based Authenticatin for 'grader' user
+### 3. Configure key-based Authenticatin for 'grader' user
 - Open a new Terminal Window and type in $ ssh-keygen -f ~/.ssh/udacity_key.rsa
 - In the same window type in $ cat ~/.ssh/udacity_key.rsa.pub to read the key, and then copy it.
 - In remote VM as root user move to grader user folder by $ cd /home/grader
@@ -32,9 +32,9 @@ You will take a baseline installation of a Linux server and prepare it to host y
 - Create $ touch .ssh/authorized_keys to store the key.
 - $ nano .ssh/authorized_keys and copy the udacity_key.pub key contents and save
 - Change permissions: 
-i. $ sudo chmod 700 /home/grader/.ssh.
-ii. $ sudo chmod 644 /home/grader/.ssh/authorized_keys.
-iii. Change the owner from root to grader: $ sudo chown -R grader:grader /home/grader/.ssh
+1. $ sudo chmod 700 /home/grader/.ssh.
+2. $ sudo chmod 644 /home/grader/.ssh/authorized_keys.
+3. Change the owner from root to grader: $ sudo chown -R grader:grader /home/grader/.ssh
 - Grader uder will now be able to log into the remote VM through ssh with: $ ssh -i ~/.ssh/udacity_key.rsa grader@13.58.134.222
-4. Enforce key-based authentication
+### 4. Enforce key-based authentication
 - 
