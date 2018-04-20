@@ -35,6 +35,22 @@ You will take a baseline installation of a Linux server and prepare it to host y
 1. $ sudo chmod 700 /home/grader/.ssh.
 2. $ sudo chmod 644 /home/grader/.ssh/authorized_keys.
 3. Change the owner from root to grader: $ sudo chown -R grader:grader /home/grader/.ssh
-- Grader uder will now be able to log into the remote VM through ssh with: $ ssh -i ~/.ssh/udacity_key.rsa grader@13.58.134.222
+- Grader user will now be able to log into the remote VM through ssh with: $ ssh -i ~/.ssh/udacity_key.rsa grader@13.58.134.222
 ### 4. Enforce key-based authentication
-- 
+- $ sudo nano /etc/ssh/sshd_config. Find the PasswordAuthentication line and edit it to no
+- Change the SSH port from 22 to 2200
+1. $ sudo nano /etc/ssh/sshd_config. Find the Port line and edit it to 2200
+2. Disable ssh login for root user: $ sudo nano /etc/ssh/sshd_config. Find the PermitRootLogin line and edit it to no
+3. $ sudo service ssh restart
+- Grader user will now be able to log into the remote VM through ssh with: $ ssh -i ~/.ssh/udacity_key.rsa -p 2200 grader@13.58.134.222
+### 5. Configure UFW
+- $ sudo ufw allow 2200/tcp
+- $ sudo ufw allow 80/tcp
+- $ sudo ufw allow 123/udp
+- $ sudo ufw enable
+## Catalog Application Deployment
+### 1. Install Required Packages
+- $ sudo apt-get install apache2
+- $ sudo apt-get install libapache2-mod-wsgi python-dev
+- $ sudo apt-get install git
+### 2.
